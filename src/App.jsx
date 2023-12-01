@@ -1,5 +1,7 @@
 import './App.css'
 import SearchInput from "./components/SearchInput";
+import SearchSuggestions from "./components/SearchSuggestions";
+import {useState} from "react";
 
 /*
 Реализовать поиск, который включает себя UI элемент (см. скриншот) в виде инпута и списка suggestions
@@ -10,11 +12,11 @@ import SearchInput from "./components/SearchInput";
 Опционально: Реализовать полнотекстовый поиск средствами Postgresql
 
 1) Completed: Сделать SearchInput
-2) TODO: Сделать SearchSuggestions
+2) Completed: Сделать SearchSuggestions
 3) TODO: Сделать Endpoint, который присылает suggestions по мере ввода символов в строку поиска
 4) TODO: Использовать debounce
-5) TODO: Создать таблицу в БД на основе файла cities.csv
-6) TODO: Создать backend логику
+5) Completed: Создать таблицу в БД на основе файла cities.csv
+6) Completed: Создать backend логику
 7) TODO: Оптионально: Реализовать полнотекстовый поиск средствами Postgresql
 
 */
