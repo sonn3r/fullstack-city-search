@@ -1,6 +1,35 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: Inter, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.25s, color 0.25s;
+}
+
+/* Themes */
+.themeButton {
+    position: fixed;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    background: linear-gradient(-120deg, #dc02fd, #bc02fa, #fa027e);
+    background-size: 350% 100%;
+    background-position: 100% 0;
+    transition: background-position 0.6s;
+    border: none;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.themeButton:hover {
+    background-position: 0 0;
 }
 
 /* SearchInput */
@@ -8,7 +37,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: white;
+    background: #242424;
     width: 95%;
     height: 75px;
     margin: 10px auto;
@@ -19,11 +48,16 @@ header {
     font-size: 34px;
     color: gray;
     align-self: center;
-    padding: 20px;
+    margin: 20px;
 }
 
 .xMark {
     cursor: pointer;
+    transition: transform .1s ease-in;
+}
+
+.xMark:hover {
+    transform: scale(1.2);
 }
 
 .searchInput {
@@ -33,13 +67,17 @@ header {
     border: none;
     outline: none;
     font-size: 26px;
-    color: black;
+    color: lightgray;
+    background: none;
 }
 
 .searchButton {
     width: 150px;
     height: 50px;
-    background: linear-gradient(45deg, #fa5b02, #fa8702);
+    background: linear-gradient(120deg, #fdcc02, #f202fa, #7202fa);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    transition: background-position .5s;
     border: none;
     cursor: pointer;
     border-radius: 50px;
@@ -49,13 +87,16 @@ header {
     margin-right: 10px;
 }
 
+.searchButton:hover {
+    background-position: 0 0;
+}
+
 /* SearchSuggestions */
 .searchSuggestions {
     position: absolute;
     width: 95%;
     top: 85px;
-    background: white;
-    color: black;
+    box-sizing: border-box;
     border-radius: 0 0 10px 10px;
 }
 
@@ -69,12 +110,3 @@ header {
 .suggestionItem:last-child {
     border-radius: 0 0 10px 10px;
 }
-
-.suggestionItem:hover {
-    background: #f5f5f5;
-}
-
-.match {
-    color: black;
-}
-

@@ -1,7 +1,8 @@
 import './App.css'
 import SearchInput from "./components/SearchInput";
-import SearchSuggestions from "./components/SearchSuggestions";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import ThemeButton from "./components/ThemeButton";
+
 
 /*
 Реализовать поиск, который включает себя UI элемент (см. скриншот) в виде инпута и списка suggestions
@@ -18,15 +19,37 @@ import {useState} from "react";
 5) Completed: Создать таблицу в БД на основе файла cities.csv
 6) Completed: Создать backend логику
 7) TODO: Оптионально: Реализовать полнотекстовый поиск средствами Postgresql
-
 */
-function App() {
+
+export default function App() {
+    const [theme, setTheme] = useState('light'); // Initial theme
+
+    const toggleTheme = () => {
+        // Toggle between 'light' and 'dark' themes
+        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    };
+
+    useEffect(() => {
+        // Set theme-specific styles based on the current theme
+        if (theme === 'light') {
+            document.body.style.backgroundColor = 'white';
+            document.body.style.color = 'black';
+        } else {
+            document.body.style.backgroundColor = 'black';
+            document.body.style.color = 'white';
+        }
+
+        // Cleanup function to reset styles when the component unmounts
+        return () => {
+            document.body.style.backgroundColor = '';
+            document.body.style.color = '';
+        };
+    }, [theme]);
 
     return (
-        <>
-            <SearchInput/>
-        </>
-    )
+        <div>
+            <SearchInput theme={theme}/>
+            <ThemeButton theme={theme} toggleTheme={toggleTheme}/>
+        </div>
+    );
 }
-
-export default App
