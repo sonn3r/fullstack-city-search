@@ -14,19 +14,23 @@ import ThemeButton from "./components/ThemeButton";
 
 1) Completed: Сделать SearchInput
 2) Completed: Сделать SearchSuggestions
-3) TODO: Сделать Endpoint, который присылает suggestions по мере ввода символов в строку поиска
-4) TODO: Использовать debounce
+3) Completed: Сделать Endpoint, который присылает suggestions по мере ввода символов в строку поиска
+4) Completed: Использовать debounce
 5) Completed: Создать таблицу в БД на основе файла cities.csv
 6) Completed: Создать backend логику
 7) TODO: Оптионально: Реализовать полнотекстовый поиск средствами Postgresql
 */
 
 export default function App() {
-    const [theme, setTheme] = useState('light'); // Initial theme
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light'); // Initial theme
 
     const toggleTheme = () => {
         // Toggle between 'light' and 'dark' themes
-        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+        setTheme((prevTheme) => {
+            const newTheme = prevTheme === 'light' ? 'dark' : 'light';
+            localStorage.setItem('theme', newTheme);
+            return newTheme;
+        });
     };
 
     useEffect(() => {
@@ -38,6 +42,7 @@ export default function App() {
             document.body.style.backgroundColor = 'black';
             document.body.style.color = 'white';
         }
+        localStorage.setItem('theme', theme);
 
         // Cleanup function to reset styles when the component unmounts
         return () => {
@@ -48,8 +53,13 @@ export default function App() {
 
     return (
         <div>
-            <SearchInput theme={theme}/>
-            <ThemeButton theme={theme} toggleTheme={toggleTheme}/>
+            <SearchInput
+                theme={theme}
+            />
+            <ThemeButton
+                theme={theme}
+                toggleTheme={toggleTheme}
+            />
         </div>
     );
 }

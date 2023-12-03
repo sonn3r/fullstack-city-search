@@ -11,27 +11,6 @@ body {
     transition: background-color 0.25s, color 0.25s;
 }
 
-/* Themes */
-.themeButton {
-    position: fixed;
-    top: 90%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px;
-    background: linear-gradient(-120deg, #dc02fd, #bc02fa, #fa027e);
-    background-size: 350% 100%;
-    background-position: 100% 0;
-    transition: background-position 0.6s;
-    border: none;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-}
-
-.themeButton:hover {
-    background-position: 0 0;
-}
-
 /* SearchInput */
 header {
     display: flex;
@@ -109,4 +88,25 @@ header {
 
 .suggestionItem:last-child {
     border-radius: 0 0 10px 10px;
+}
+
+/* ThemeButton */
+.themeButton {
+    position: fixed;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    background: linear-gradient(-120deg, #dc02fd, #bc02fa, #fa027e);
+    background-size: 350% 100%;
+    background-position: 100% 0;
+    transition: background-position 0.6s;
+    border: none;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.themeButton:hover {
+    background-position: 0 0;
 }

@@ -1,7 +1,7 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMoon, faSun} from "@fortawesome/free-solid-svg-icons";
 
-export default function ThemeButton({toggleTheme, theme}) {
+export default function ThemeButton({toggleTheme, theme, enableTransition}) {
     return (
         <button
             className='themeButton'
