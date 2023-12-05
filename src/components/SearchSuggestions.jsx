@@ -42,11 +42,7 @@ const SearchSuggestions = ({suggestions, inputTerm, onItemClick, theme}) => {
                     );
                 } else {
                     return (
-                        <div
-                            key={city.id}
-                            className="suggestionItem"
-                            onClick={() => onItemClick(city)}
-                        >
+                        <div key={city.id} className="suggestionItem" onClick={() => onItemClick(city)}>
                             {name}
                         </div>
                     );

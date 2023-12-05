@@ -56,33 +56,33 @@ export default function SearchInput({theme}) {
     }
 
     return (<>
-            <header style={styles}>
-                <FontAwesomeIcon icon={faMagnifyingGlass} className="magnifyingGlass"/>
-                <input
-                    type="text"
-                    className="searchInput"
-                    placeholder="Search city"
-                    value={searchTerm}
-                    onChange={handleInputChange}
-                    style={styles}
-                />
+        <header style={styles}>
+            <FontAwesomeIcon icon={faMagnifyingGlass} className="magnifyingGlass"/>
+            <input
+                type="text"
+                className="searchInput"
+                placeholder="Search city"
+                value={searchTerm}
+                onChange={handleInputChange}
+                style={styles}
+            />
 
-                <FontAwesomeIcon
-                    icon={faTimes}
-                    className="xMark"
-                    onClick={handleInputClose}
-                />
-                <div>
-                    <button type="submit" className="searchButton">
-                        Search
-                    </button>
-                </div>
-                {searchTerm && (<SearchSuggestions
-                        suggestions={filteredSuggestions}
-                        inputTerm={searchTerm}
-                        onItemClick={handleSuggestionClick}
-                        theme={theme}
-                    />)}
-            </header>
-        </>);
+            <FontAwesomeIcon
+                icon={faTimes}
+                className="xMark"
+                onClick={handleInputClose}
+            />
+            <div>
+                <button type="submit" className="searchButton">
+                    Search
+                </button>
+            </div>
+            {searchTerm && (<SearchSuggestions
+                suggestions={filteredSuggestions}
+                inputTerm={searchTerm}
+                onItemClick={handleSuggestionClick}
+                theme={theme}
+            />)}
+        </header>
+    </>);
 }

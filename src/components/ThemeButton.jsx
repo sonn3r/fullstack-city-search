@@ -11,4 +11,4 @@ export default function ThemeButton({toggleTheme, theme, enableTransition}) {
                 <FontAwesomeIcon icon={faMoon} style={{color: 'white'}}/>}
         </button>
     )
-  }
+}
