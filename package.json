@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/sonn3r/fullstack-city-search",
+  "homepage": "https://sonn3r.github.io/fullstack-city-search",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

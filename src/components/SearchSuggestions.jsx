@@ -7,14 +7,15 @@ const SearchSuggestions = ({suggestions, inputTerm, onItemClick, theme}) => {
     };
 
     const hoverStyles = {
-        backgroundColor: theme === 'light' ? '#c0c0c0' : '#464646',
-        color: theme === 'light' ? 'black' : 'white',
+        backgroundColor: theme === 'light' ? '#c0c0c0' : '#464646', color: theme === 'light' ? 'black' : 'white',
     };
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
     return (
-        <div className="searchSuggestions"
-             style={{...baseStyles, borderTop: theme === 'light' ? '1px solid #c0c0c0' : '1px solid #464646'}}>
+        <div
+            className="searchSuggestions"
+            style={{borderTop: theme === 'light' ? '1px solid #c0c0c0' : '1px solid #464646'}}
+        >
             {suggestions.slice(0, 10).map((city, index) => {
                 const name = city.name;
                 const matchIndex = name.toLowerCase().indexOf(inputTerm.toLowerCase());
@@ -31,25 +32,24 @@ const SearchSuggestions = ({suggestions, inputTerm, onItemClick, theme}) => {
                             onMouseLeave={() => setHoveredIndex(null)}
                             style={index === hoveredIndex ? {...baseStyles, ...hoverStyles} : baseStyles}
                         >
-                            <span className='match'
-                                  style={{color: theme === 'light' ? '#242424' : 'white', fontWeight: '400'}}>
-                                {match}
-                            </span>
+                    <span className='match' style={{color: theme === 'light' ? '#242424' : 'white', fontWeight: '400'}}>
+                        {match}
+                    </span>
                             <span className='afterMatch' style={{opacity: '0.6'}}>
-                                {afterMatch}
-                            </span>
-                        </div>
-                    );
+                        {afterMatch}
+                    </span>
+                        </div>);
                 } else {
                     return (
-                        <div key={city.id} className="suggestionItem" onClick={() => onItemClick(city)}>
+                        <div
+                            key={city.id}
+                            className="suggestionItem"
+                            onClick={() => onItemClick(city)}>
                             {name}
-                        </div>
-                    );
+                        </div>);
                 }
             })}
-        </div>
-    );
+        </div>);
 };
 
 export default SearchSuggestions;

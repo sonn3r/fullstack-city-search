@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMagnifyingGlass, faTimes} from "@fortawesome/free-solid-svg-icons";
 import SearchSuggestions from "./SearchSuggestions.jsx";
@@ -8,6 +8,9 @@ export default function SearchInput({theme}) {
     const [searchTerm, setSearchTerm] = useState("");
     const [suggestions, setSuggestions] = useState([]);
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+    const [showSuggestions, setShowSuggestions] = useState(false);
+
+    const inputRef = useRef();
 
     // Create a separate debounce function for filtering suggestions
     const debouncedFilterSuggestions = debounce((term) => {
@@ -39,16 +42,35 @@ export default function SearchInput({theme}) {
         const term = event.target.value;
         setSearchTerm(term);
         debouncedFilterSuggestions(term);
+        setShowSuggestions(true);
     };
 
     const handleSuggestionClick = (city) => {
         // Handle suggestion click, e.g., update state or perform some action
         console.log("Selected City:", city);
+        setShowSuggestions(false);
+        setSearchTerm('');
     };
+
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+            // Close suggestions if the click is outside of the search input
+            if (!inputRef.current.contains(event.target)) {
+                console.log(inputRef)
+                setShowSuggestions(false);
+            }
+        };
+
+        document.addEventListener('click', handleOutsideClick);
+
+        return () => {
+            document.removeEventListener('click', handleOutsideClick);
+        };
+    }, []);
 
     const handleInputClose = () => {
         setSearchTerm('');
-    }
+    };
 
     const styles = {
         backgroundColor: theme === 'light' ? 'lightgray' : '#242424',
@@ -59,6 +81,7 @@ export default function SearchInput({theme}) {
         <header style={styles}>
             <FontAwesomeIcon icon={faMagnifyingGlass} className="magnifyingGlass"/>
             <input
+                ref={inputRef}
                 type="text"
                 className="searchInput"
                 placeholder="Search city"
@@ -66,7 +89,6 @@ export default function SearchInput({theme}) {
                 onChange={handleInputChange}
                 style={styles}
             />
-
             <FontAwesomeIcon
                 icon={faTimes}
                 className="xMark"
@@ -77,12 +99,14 @@ export default function SearchInput({theme}) {
                     Search
                 </button>
             </div>
-            {searchTerm && (<SearchSuggestions
-                suggestions={filteredSuggestions}
-                inputTerm={searchTerm}
-                onItemClick={handleSuggestionClick}
-                theme={theme}
-            />)}
+            {showSuggestions && searchTerm && (
+                <SearchSuggestions
+                    suggestions={filteredSuggestions}
+                    inputTerm={searchTerm}
+                    onItemClick={handleSuggestionClick}
+                    theme={theme}
+                />
+            )}
         </header>
     </>);
 }
